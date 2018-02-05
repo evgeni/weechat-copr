@@ -2,7 +2,11 @@
 %global __provides_exclude_from ^%{_libdir}/weechat/plugins/.*$
 
 %if %{?_pkgdocdir:1}0
+%if 0%{?rhel}
+%global _doc %{name}-%{version}
+%else
 %global _doc %{name}
+%endif
 %else
 %global _doc %{name}-%{version}
 %global _pkgdocdir %{_docdir}/%{_doc}
@@ -10,7 +14,7 @@
 
 Name:      weechat
 Version:   2.0.1
-Release:   1%{?dist}
+Release:   2%{?dist}
 
 Summary:   Portable, fast, light and extensible IRC client
 URL:       http://weechat.org
@@ -132,6 +136,9 @@ popd
 
 
 %changelog
+* Mon Feb 05 2018 Evgeni Golov <evgeni@debian.org> - 2.0.1-2
+- Fix build for EL7
+
 * Wed Jan 31 2018 Paul Komkoff <i@stingr.net> - 2.0.1-1
 - Update to 2.0.1 (#1528100)
 
